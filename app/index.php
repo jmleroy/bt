@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blind test application</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
 <style>
@@ -19,8 +20,9 @@
     }
 
     #cover, #cover > img {
-        width: 1000px;
-        height: 1000px;
+        /*width: 1000px;
+        height: 1000px;*/
+        width: auto;
     }
 
     #player > a {
@@ -29,10 +31,15 @@
 </style>
 <div id="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">Blind Test</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <!--<button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button>-->
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
@@ -41,7 +48,7 @@
                        href="#"
                        id="navbarDropdown"
                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choisir test...
+                        <i class="fa fa-bars" aria-hidden="true"></i>
                     </a>
                     <div id="test-list" class="dropdown-menu" aria-labelledby="navbarDropdown">
 
@@ -54,13 +61,14 @@
                     Voir réponses
                 </label>
             </form>
+            <span class="navbar-text">
+                <h1 id="playlist-title"></h1>
+            </span>
         </div>
     </nav>
 
 </div>
 <div id="body">
-
-    <h1 id="playlist-title"></h1>
     <h4 id="playlist-rules"></h4>
     <div class="row">
         <div class="col-md-2">

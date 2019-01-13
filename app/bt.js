@@ -30,7 +30,6 @@ let App = {
                 }
                 App._addToMenu(App.playlists[i]);
             });
-            break;
         }
         console.log("Playlists data after : ", this.playlists);
         // Fill menu with
@@ -84,8 +83,7 @@ let App = {
     },
     _playList: function(clickEvent) {
         let $target = $(clickEvent.target),
-            playlist = App.playlists[$target.prop('data-playlist-nr')],
-            fullDuration = 0;
+            playlist = App.playlists[$target.prop('data-playlist-nr')];
 
         App.stop = false;
         console.log('run playlist', playlist.id, ' with pause');

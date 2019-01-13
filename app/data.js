@@ -6,7 +6,7 @@ let playlists = [
         'start': 60,
         'answer': 60,
         'fields': [ 'author', 'title' ],
-        'rule': "1 point par auteur, 1 point par titre",
+        'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
                 'author': 'Florent Pagny',
@@ -71,7 +71,7 @@ let playlists = [
         'start': 60,
         'answer': 60,
         'fields': [ 'author', 'title' ],
-        'rule': "1 point par auteur, 1 point par titre",
+        'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
                 'author': 'Native',
@@ -136,7 +136,7 @@ let playlists = [
         'start': 60,
         'answer': 60,
         'fields': [ 'author', 'title' ],
-        'rule': "1 point par auteur, 1 point par titre",
+        'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
                 'author': 'Cyndi Lauper',
@@ -229,7 +229,7 @@ let playlists = [
         'start': 0,
         'answer': 0,
         'fields': [ 'author', 'title', 'show' ],
-        'rule': "1 point par auteur, 1 point par titre, 1 point par série TV + 1 point de bonus si les 3 sont trouvés",
+        'rules': "1 point par auteur, 1 point par titre, 1 point par série TV + 1 point de bonus si les 3 sont trouvés",
         'tracks': [
             {
                 'author': 'The Who',
@@ -315,7 +315,7 @@ let playlists = [
         'start': 60,
         'answer': 60,
         'fields': [ 'author', 'title' ],
-        'rule': "1 point par auteur, 1 point par titre",
+        'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
                 'author': 'Mylène Farmer',
@@ -405,7 +405,7 @@ let playlists = [
         'start': 60,
         'answer': 60,
         'fields': [ 'author', 'title', 'movie' ],
-        'rule': "1 point par auteur, 1 point par titre de chanson, 1 point par titre de film + 1 point de bonus si les 3 sont trouvés",
+        'rules': "1 point par auteur, 1 point par titre de chanson, 1 point par titre de film + 1 point de bonus si les 3 sont trouvés",
         'tracks': [
             {
                 'author': 'Nino Rota',
@@ -471,7 +471,7 @@ let playlists = [
         'start': 60,
         'answer': 60,
         'fields': [ 'author', 'title' ],
-        'rule': "1 point par auteur, 1 point par titre",
+        'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
                 'author': 'Arctic Monkeys',
@@ -558,7 +558,7 @@ let playlists = [
         'start': 60,
         'answer': 60,
         'fields': [ 'author', 'title' ],
-        'rule': "1 point par auteur, 1 point par titre",
+        'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
                 'author': 'Blackstreet',
@@ -621,7 +621,7 @@ let playlists = [
         'start': 60,
         'answer': 60,
         'fields': [ 'author', 'title', 'year', 'order' ],
-        'rule': "1 point par titre, auteur, année et ordre de sortie ; +1 point par sans faute, +5 points si sans faute général.",
+        'rules': "1 point par titre, auteur, année et ordre de sortie ; +1 point par sans faute, +5 points si sans faute général.",
         'tracks': [
             {
                 'author': 'Alain Chabat et Gérard Darmon',
@@ -747,7 +747,7 @@ let playlists = [
         'start': 60,
         'answer': 60,
         'fields': [ 'author', 'title' ],
-        'rule': "1 point par auteur, 1 point par titre",
+        'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
                 'author': 'Les Gauff au suc',
@@ -833,7 +833,7 @@ let playlists = [
         'start': 60,
         'answer': 60,
         'fields': [ 'author', 'title' ],
-        'rule': "1 point par auteur, 1 point par titre",
+        'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
                 'author': 'Muse',
@@ -950,7 +950,7 @@ let playlists = [
         'start': 0,
         'answer': 60,
         'fields': [ 'author', 'title' ],
-        'rule': "1 point par auteur, 1 point par titre",
+        'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
 
             {
