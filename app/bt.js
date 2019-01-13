@@ -52,6 +52,7 @@ let App = {
         let playlist = App.playlists[$target.prop('data-playlist-nr')];
         console.log('populating playlist', playlist);
         $('#body').show();
+        $('#test-panel').hide();
 
         $('#playlist-title').html((Number.parseInt(playlist.nr) + 1 ) + '. ' + playlist.title);
         $('#playlist-rules').html(playlist.rules);
@@ -77,7 +78,6 @@ let App = {
                 .on('click', App._playTrack)
             );
         }
-        $('#test-panel').html('');
     },
     _getSeekPosition: function(seconds, fullDuration) {
         return 100 * seconds / fullDuration;
@@ -89,43 +89,37 @@ let App = {
 
         App.stop = false;
         console.log('run playlist', playlist.id, ' with pause');
-        DZ.player.playPlaylist(playlist.id, false); // load tracks then pause
-        console.log('looping tracks');
-        let duration = 0;
+        DZ.player.playPlaylist(playlist.id); // load tracks
+        DZ.player.pause();
+        App._playListTrack(playlist, 0);
+    },
+    _playListTrack: function(playlist, trackNr) {
+        let track = playlist.tracks[trackNr];
+        console.log('play track ', track.nr);
 
-        for (let i in playlist.tracks) {
-            let track = playlist.tracks[i];
-            window.setTimeout((function(track) {
-                console.log('play track ', track.nr);
+        let start = showAnswers ? track.answer : track.start,
+            seekPosition = App._getSeekPosition(start, track.duration);
+        console.log('seek position ', start, ' with duration ', track.duration, ' = ', seekPosition);
 
-                let start = showAnswers ? track.answer : track.start,
-                    seekPosition = App._getSeekPosition(start, track.duration);
-                console.log('seek position ', start, ' with duration ', track.duration, ' = ', seekPosition);
-
-                DZ.player.seek(seekPosition);
-                DZ.player.play();
-                App._showTrackInfo(track);
-
-                window.setTimeout(function() {
+        App._showTrackInfo(track);
+        DZ.player.seek(seekPosition);
+        DZ.player.play();
+        window.setTimeout(function() {
+            if (!App.stop) {
+                DZ.player.pause();
+                if (trackNr + 1 === playlist.tracks.length) {
+                    console.log('end of playlist reached:', trackNr + 1)
+                } else {
+                    DZ.player.next();
                     DZ.player.pause();
+                    console.log('set player to next track, wait 1s');
                     window.setTimeout(function() {
-                        if (!App.stop) {
-                            DZ.player.next();
-                            DZ.player.pause();
-                            console.log('set player to next track');
-                            if (track.nr === playlist.tracks.length) {
-                                console.log('end of playlist reached');
-                            }
-                        }
+                        console.log('run next track');
+                        App._playListTrack(playlist, trackNr + 1);
                     }, App.gap * 1000);
-                }, track.time * 1000);
-
-            }).bind(null, track), duration * 1000);
-            console.log('track', track.nr, 'will be played after', duration, 'seconds');
-            duration = duration + App.gap + track.time;
-        }
-
-        console.log('end of _playList() reached');
+                }
+            }
+        }, track.time * 1000);
     },
     _stopList: function(clickEvent) {
         let $target = $(clickEvent.target);
@@ -139,8 +133,9 @@ let App = {
     },
     _showTrackInfo: function(track) {
         console.log('entering _showTrackInfo with track ', track);
+        $('#test-panel').show();
         if (showAnswers) {
-            $('#test-panel .nr').html(track.nr + 1);
+            $('#test-panel .nr').html(Number.parseInt(track.nr) + 1);
             $('#test-panel .nr-sep').html('. ');
             $('#test-panel .author').html(track.author);
             $('#test-panel .title-sep').html(' - ');
@@ -157,7 +152,7 @@ let App = {
             $('#cover').html('').append($('<img>').prop('src', track.cover));
         } else {
             this._hideTrackInfo();
-            $('#test-panel .nr').html('Extrait n°' + (track.nr + 1));
+            $('#test-panel .nr').html('Extrait n°' + (Number.parseInt(track.nr) + 1));
             $('#cover').html('').append($('<img>').prop('src', this.unknownCover));
         }
     },
