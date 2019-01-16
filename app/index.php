@@ -43,7 +43,9 @@
             #test-panel .extra-movie { display:block; }
             #test-panel .title-sep { display:none; }
             #test-panel .extra-year { font-size:8em; }
+            #test-panel .nr-alone { font-size:4em; }
             #test-panel .extra-order { display:block; }
+            #test-panel .rules { display:block; }
 
             #cover {
                 width: 960px;
@@ -85,8 +87,8 @@
         </div>
         <div class="col-md-10" id="test-panel">
             <div id="cover">
-                <h1 class="playlist-title"></h1>
                 <h2>
+                    <span class="nr-alone"></span>
                     <span class="nr"></span>
                     <span class="nr-sep"></span>
                     <span class="author"></span>
@@ -94,6 +96,7 @@
                     <span class="title"></span>
                     <span class="extra-show"></span>
                     <span class="extra-movie"></span>
+                    <span class="rules"></span>
                 </h2>
                 <h4 class="extra">
                     <span class="extra-year"></span>

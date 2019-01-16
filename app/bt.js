@@ -1,6 +1,7 @@
 let App = {
     showAnswers: false,
     playlists: playlists,
+    currentPlaylist: null,
     stop: false,
     gap: 1, // nb seconds of gap between tracks
     unknownCover: 'unknown-cover.jpg',
@@ -67,59 +68,77 @@ let App = {
         App.showAnswers = false;
         $('#body').show();
         $('#test-panel').hide();
-        DZ.player.playPlaylist(playlist.id, false); // load tracks
-        //DZ.player.pause();
 
         $('.playlist-title').show().html((Number.parseInt(playlist.nr) + 1 ) + '. ' + playlist.title);
-        $('#playlist-rules').html(playlist.rules);
+        //$('#playlist-rules').html(playlist.rules);
         $player.html('');
-        $player.append(
-            $('<a class="btn btn-outline-secondary">')
-                .html('<i class="fa fa-eye-slash"></i>')
-                .on('click', App._toggleAnswers)
-        );
-        $player.append(
-            $('<a class="btn btn-success">')
-                .html('<i class="fa fa-play"></i>')
-                .prop('data-playlist-nr', playlist.nr)
-                .on('click', App._playList)
-        );
-        $player.append(
-            $('<a class="btn btn-danger">')
-                .html('<i class="fa fa-stop"></i>')
-                .prop('data-playlist-nr', playlist.nr)
-                .on('click', App._stopList)
-        );
-        for (let i in playlist.tracks) {
+
+        // Trick to allow first track's position to be changed :-p
+        DZ.player.playPlaylist(playlist.id); // load tracks
+        DZ.player.setMute(true);
+        DZ.player.setVolume(0);
+
+        window.setTimeout(function() {
+            DZ.player.pause();
+
             $player.append(
-                $('<a class="btn btn-default">')
-                    .html(Number.parseInt(playlist.tracks[i].nr) + 1)
-                    .prop('data-playlist-nr', playlist.nr)
-                    .prop('data-track-nr', playlist.tracks[i].nr)
-                .on('click', App._playTrack)
+                $('<a class="btn btn-outline-secondary">')
+                    .html('<i class="fa fa-eye-slash"></i>')
+                    .on('click', App._toggleAnswers)
             );
-        }
+            $player.append(
+                $('<a class="btn btn-success">')
+                    .html('<i class="fa fa-play"></i>')
+                    .prop('data-playlist-nr', playlist.nr)
+                    .on('click', App._playList)
+            );
+            $player.append(
+                $('<a class="btn btn-danger">')
+                    .html('<i class="fa fa-stop"></i>')
+                    .prop('data-playlist-nr', playlist.nr)
+                    .on('click', App._stopList)
+            );
+            /*
+            // TODO: define _playTrack
+            for (let i in playlist.tracks) {
+                $player.append(
+                    $('<a class="btn btn-default">')
+                        .html(Number.parseInt(playlist.tracks[i].nr) + 1)
+                        .prop('data-playlist-nr', playlist.nr)
+                        .prop('data-track-nr', playlist.tracks[i].nr)
+                        .on('click', App._playTrack)
+                );
+            }
+*/
+            App.currentPlaylist = playlist;
+        }, 1000);
     },
     _getSeekPosition: function(seconds, fullDuration) {
         return 100 * seconds / fullDuration;
     },
     _playList: function(clickEvent) {
-        let $target = $(clickEvent.target),
-            playlist = App.playlists[$target.prop('data-playlist-nr')];
+        //let $target = $(clickEvent.target),
+        //    playlist = App.playlists[$target.prop('data-playlist-nr')];
+        let playlist = App.currentPlaylist;
 
         App.stop = false;
-        console.log('run playlist', playlist.id, ' with pause');
+        console.log('run playlist', playlist.id);//, ' with pause');
         //DZ.player.playPlaylist(playlist.id); // load tracks
-        //DZ.player.pause();
+        // Trick to allow first track's position to be changed :-p
+        DZ.player.playPlaylist(playlist.id); // load tracks
+        DZ.player.setMute(true);
+        DZ.player.setVolume(0);
         // TODO: show transition 3, 2, 1 ...
-        //window.setTimeout(function() {
+
+        //DZ.player.setMute(false);
+        //DZ.player.setVolume(100);
         $('#test-panel .playlist-title').hide();
-        App._playListTrack(playlist, 0);
-        //}, App.gap * 1000);
+        App._playListTrack(0);
     },
-    _playListTrack: function(playlist, trackNr) {
-        let track = playlist.tracks[trackNr];
-        console.log('play track ', track.nr);
+    _playListTrack: function(trackNr) {
+        let playlist = App.currentPlaylist,
+            track = playlist.tracks[trackNr];
+        console.log('play track', track.nr, ':', track);
 
         let start = App.showAnswers ? track.answer : track.start,
             trackTime = App.showAnswers ? track.answerTime : track.time,
@@ -128,6 +147,8 @@ let App = {
 
         App._showTrackInfo(track);
         DZ.player.seek(seekPosition);
+        DZ.player.setMute(false);
+        DZ.player.setVolume(100);
         DZ.player.play();
 
         window.setTimeout(function() {
@@ -141,7 +162,7 @@ let App = {
                     console.log('set player to next track, wait 1s');
                     window.setTimeout(function() {
                         console.log('run next track');
-                        App._playListTrack(playlist, trackNr + 1);
+                        App._playListTrack(trackNr + 1);
                     }, App.gap * 1000);
                 }
             }
@@ -178,7 +199,8 @@ let App = {
             }
         } else {
             this._hideTrackInfo();
-            $('#test-panel .nr').html('Extrait n°' + (Number.parseInt(track.nr) + 1));
+            $('#test-panel .nr-alone').html('Extrait n°' + (Number.parseInt(track.nr) + 1));
+            $('#test-panel .rules').html(App.currentPlaylist.rules);
         }
         App._showCover(track);
     },
@@ -192,6 +214,7 @@ let App = {
     },
     _hideTrackInfo: function() {
         $('#test-panel .nr').html('');
+        $('#test-panel .nr-alone').html('');
         $('#test-panel .nr-sep').html('');
         $('#test-panel .author').html('');
         $('#test-panel .title-sep').html('');
@@ -200,22 +223,23 @@ let App = {
         $('#test-panel .extra-movie').html('');
         $('#test-panel .extra-year').html('');
         $('#test-panel .extra-order').html('');
+        $('#test-panel .rules').html('');
     },
     end: function() {}
-};
-
-const onPlayerLoaded = function(e) {
-    console.log('Player loaded !');
 };
 
 DZ.init({
     appId  : '321362',
     channelUrl : 'http://blind.studio16.local/channel.php',
     player : {
-        onload : onPlayerLoaded
+        onload : function(playerStatus) {
+            console.log('Player loaded !');
+/*
+            //DZ.player.setMute(true);
+        }
     }
 });
-
+*/
 DZ.login(function(response) {
     if (response.authResponse) {
         console.log('Welcome!  Fetching your information.... ');
@@ -227,3 +251,7 @@ DZ.login(function(response) {
         console.log('User cancelled login or did not fully authorize.');
     }
 }, {perms: 'basic_access'});
+
+        }
+    }
+});
