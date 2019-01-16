@@ -783,6 +783,11 @@ let playlists = [
                 'answer': 67
             },
             {
+                'author': 'Wallace Collection',
+                'title': 'Daydream',
+                'start': 76
+            },
+            {
                 'author': 'Annie Cordy',
                 'title': 'Frida Oum Papa',
                 'answer': 78
@@ -1079,6 +1084,131 @@ let playlists = [
                 'title': 'Satisfaction'
             }
         ]
-    },    
+    },
+    {
+        'title': "Timeline (dans le bon ordre)",
+        'id': 5341279182,
+        'time': 8,
+        'start': 60,
+        'answer': 60,
+        'fields': [ 'author', 'title', 'year', 'order' ],
+        'tracks': [
+            {
+                'author': 'Pixies',
+                'title': 'Where is my mind?',
+                'year': 1988,
+                'order': 1,
+                'start': 46,
+                'answer': 46
+            },
+            {
+                'author': 'Noir Désir',
+                'title': 'Tostaky',
+                'year': 1992,
+                'order': 2,
+                'start': 75,
+                'answer': 75
+            },
+            {
+                'author': '4 Non Blondes',
+                'title': 'What’s up',
+                'year': 1993,
+                'order': 3,
+                'start': 85,
+                'answer': 85
+            },
+            {
+                'author': 'Alain Chabat et Gérard Darmon',
+                'title': 'La Carioca',
+                'year': 1994,
+                'order': 4
+            },
+            {
+                'author': 'The Smashing Pumpkins',
+                'title': 'Tonight Tonight',
+                'year': 1995,
+                'order': 5,
+                'start': 94,
+                'answer': 94
+            },
+            {
+                'author': 'The Fugees',
+                'title': 'Ready or Not',
+                'year': 1996,
+                'order': 6,
+                'start': 75,
+                'answer': 75
+            },
+            {
+                'author': 'Blur',
+                'title': 'Song 2',
+                'year': 1997,
+                'order': 7,
+                'start': 43,
+                'answer': 43
+            },
+            {
+                'author': 'Alizée',
+                'title': 'Moi... Lolita',
+                'year': 2000,
+                'order': 8,
+                'start': 65,
+                'answer': 65
+            },
+            {
+                'author': 'Sophie Ellis-Bextor',
+                'title': 'Murder on the Dancefloor',
+                'year': 2001,
+                'order': 9,
+                'video': 'https://www.youtube.com/watch?v=hAx6mYeC6pY'
+            },
+            {
+                'author': 't.A.T.u',
+                'title': 'All the things she said',
+                'year': 2002,
+                'order': 10
+            },
+            {
+                'author': 'Green Day',
+                'title': 'American Idiot',
+                'year': 2004,
+                'order': 11,
+                'start': 10,
+                'answer': 10
+            },
+            {
+                'author': 'Gorillaz',
+                'title': 'Feel Good, Inc.',
+                'year': 2005,
+                'order': 12,
+                'start': 65,
+                'answer': 30
+            },
+            {
+                'author': 'Amy Winehouse',
+                'title': 'Rehab',
+                'year': 2006,
+                'order': 13,
+                'start': 64,
+                'answer': 64
+            },
+            {
+                'author': 'Justice',
+                'title': 'D.A.N.C.E.',
+                'year': 2007,
+                'order': 14,
+                'start': 17,
+                'answer': 17
+            },
+            {
+                'author': 'The Black Eyed Peas',
+                'title': 'I gotta feeling',
+                'year': 2009,
+                'order': 15,
+                'start': 59,
+                'answer': 59
+            }
+        ]
+    }
 ];
 

@@ -10,36 +10,50 @@
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
-<style>
-    #body h1 {
-        text-align:center;
-        background-color: black;
-        color: white;
-        padding: .5em;
-        margin:0;
-    }
-
-    #cover, #cover > img {
-        /*width: 1000px;
-        height: 1000px;*/
-        width: auto;
-    }
-
-    #player > a {
-        display: block;
-    }
-</style>
 <div id="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!--<button class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>-->
+        <style>
+
+            #test-panel h2 {
+                position:relative;
+                width: 960px;
+                background-color: rgba(0,0,0,.6);
+                color: white;
+                padding: .3em;
+                margin:0;
+            }
+            #test-panel h2 * {
+                font-size:2em;
+            }
+            #test-panel h4 {
+                padding-right: 1em;
+            }
+            #test-panel h4 * {
+                background-color: rgba(0,0,0,.6);
+                color: white;
+                position:relative; top:400px;
+                font-size: 2em;
+                display:block;
+                right: 0;
+                text-align:right;
+            }
+            #test-panel .author { color: yellow; text-align:right }
+            #test-panel .title { color: lightcoral; display:block; }
+            #test-panel .extra-show { display:block; }
+            #test-panel .extra-movie { display:block; }
+            #test-panel .title-sep { display:none; }
+            #test-panel .extra-year { font-size:8em; }
+            #test-panel .extra-order { display:block; }
+
+            #cover {
+                width: 960px;
+                height: 960px;
+            }
+
+            #player > a {
+                display: block;
+            }
+        </style>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
@@ -55,14 +69,8 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <label for="show-answers">
-                    <input id="show-answers" type="checkbox" value="">
-                    Voir réponses
-                </label>
-            </form>
             <span class="navbar-text">
-                <h1 id="playlist-title"></h1>
+                <h4 class="playlist-title"></h4>
             </span>
         </div>
     </nav>
@@ -76,17 +84,22 @@
             </ul>
         </div>
         <div class="col-md-10" id="test-panel">
-            <h2>
-                <span class="nr"></span>
-                <span class="nr-sep"></span>
-                <span class="author"></span>
-                <span class="title-sep"></span>
-                <span class="title"></span>
-            </h2>
-            <h4 class="extra">
-
-            </h4>
-            <div id="cover"></div>
+            <div id="cover">
+                <h1 class="playlist-title"></h1>
+                <h2>
+                    <span class="nr"></span>
+                    <span class="nr-sep"></span>
+                    <span class="author"></span>
+                    <span class="title-sep"></span>
+                    <span class="title"></span>
+                    <span class="extra-show"></span>
+                    <span class="extra-movie"></span>
+                </h2>
+                <h4 class="extra">
+                    <span class="extra-year"></span>
+                    <span class="extra-order"></span>
+                </h4>
+            </div>
         </div>
     </div>
 </div>
