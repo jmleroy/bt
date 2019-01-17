@@ -43,7 +43,7 @@
             #test-panel .extra-movie { display:block; }
             #test-panel .title-sep { display:none; }
             #test-panel .extra-year { font-size:8em; }
-            #test-panel .nr-alone { font-size:4em; }
+            #test-panel .nr-alone { font-size:5em; padding-bottom: 2em; }
             #test-panel .extra-order { display:block; }
             #test-panel .rules { display:block; }
 

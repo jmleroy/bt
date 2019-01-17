@@ -31,13 +31,14 @@ let App = {
                     App._initLink(App.playlists[i]);
                 }
             });
-            if (!mustInitLinks) {
-                for (let i in App.playlists) {
-                    App._addToMenu(App.playlists[i], Number.parseInt(i));
-                }
-                console.log("Playlists data after : ", this.playlists);
-                // Fill menu with
+        }
+
+        if (!mustInitLinks) {
+            for (let i in App.playlists) {
+                App._addToMenu(App.playlists[i], Number.parseInt(i));
             }
+            console.log("Playlists data after : ", this.playlists);
+            // Fill menu with
         }
     },
     _initLink: function(playlist) {
@@ -220,6 +221,8 @@ let App = {
         console.log('entering _showTrackInfo with track ', track);
         $('#test-panel').show();
         if (App.showAnswers) {
+            $('#test-panel .nr-alone').hide();
+            $('#test-panel .rules').hide();
             $('#test-panel .nr').html(Number.parseInt(track.nr) + 1);
             $('#test-panel .nr-sep').html('. ');
             $('#test-panel .author').html(track.author);
@@ -237,8 +240,8 @@ let App = {
             }
         } else {
             this._hideTrackInfo();
-            $('#test-panel .nr-alone').html('Extrait n°' + (Number.parseInt(track.nr) + 1));
-            $('#test-panel .rules').html(App.currentPlaylist.rules);
+            $('#test-panel .nr-alone').show().html('Extrait n°' + (Number.parseInt(track.nr) + 1));
+            $('#test-panel .rules').show().html(App.currentPlaylist.rules);
         }
         App._showCover(track);
     },
