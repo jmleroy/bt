@@ -112,5 +112,30 @@
 <script src="dz.js"></script>
 <script src="data.js"></script>
 <script src="bt.js"></script>
+<script>
+    $(document).ready(function() {
+        DZ.init({
+            appId  : '321362',
+            channelUrl : 'http://blind.studio16.local/channel.php',
+            player : {
+                onload : function(playerStatus) {
+                    console.log('Player loaded !');
+
+                    DZ.login(function(response) {
+                        if (response.authResponse) {
+                            console.log('Welcome!  Fetching your information.... ');
+                            DZ.api('/user/me', function(response) {
+                                console.log('Good to see you, ' + response.name + '.');
+                                App.init();
+                            });
+                        } else {
+                            console.log('User cancelled login or did not fully authorize.');
+                        }
+                    }, {perms: 'basic_access'});
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>

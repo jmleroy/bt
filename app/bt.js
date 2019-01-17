@@ -5,10 +5,10 @@ let App = {
     stop: false,
     gap: 1, // nb seconds of gap between tracks
     unknownCover: 'unknown-cover.jpg',
-    init: function() {
+    init: function(mustInitLinks) {
         for (let i in App.playlists) {
             console.log('Playlist', i, ': ', App.playlists[i]);
-            DZ.api('/playlist/' + App.playlists[i].id, function(list) {
+            DZ.api('/playlist/' + App.playlists[i].id, function (list) {
                 console.log("Playlist", i, "data : ", list);
                 App.playlists[i].nr = Number.parseInt(i);
                 App.playlists[i].codename = list.title;
@@ -20,19 +20,57 @@ let App = {
                     App.playlists[i].tracks[j].id = track.id;
                     App.playlists[i].tracks[j].duration = track.duration;
                     App.playlists[i].tracks[j].cover = track.album.cover_xl;
+                    App.playlists[i].tracks[j].preview = track.preview;
 
                     App.playlists[i].tracks[j].time = App.playlists[i].tracks[j].time || App.playlists[i].time;
                     App.playlists[i].tracks[j].answerTime = App.playlists[i].tracks[j].answerTime || 2 * App.playlists[i].tracks[j].time;
                     App.playlists[i].tracks[j].start = App.playlists[i].tracks[j].start || App.playlists[i].start;
                     App.playlists[i].tracks[j].answer = App.playlists[i].tracks[j].answer || App.playlists[i].answer;
                 }
+                if (!!mustInitLinks) {
+                    App._initLink(App.playlists[i]);
+                }
             });
+            if (!mustInitLinks) {
+                for (let i in App.playlists) {
+                    App._addToMenu(App.playlists[i], Number.parseInt(i));
+                }
+                console.log("Playlists data after : ", this.playlists);
+                // Fill menu with
+            }
         }
-        for (let i in App.playlists) {
-            App._addToMenu(App.playlists[i], Number.parseInt(i));
+    },
+    _initLink: function(playlist) {
+        let i = playlist.nr;
+
+        $('#body').append(
+            $('<h1>').html(playlist.codename)
+        ).append(
+            $('<ul id="playlist_' + i + '">')
+        );
+
+        console.log('add tracks ', playlist.tracks);
+        for (let j in playlist.tracks) {
+            let track = playlist.tracks[j],
+                filename = (Number.parseInt(track.nr) + 1) + ' - ' + track.author + ' - ' + track.title;
+            if (!!track.show) {
+                filename += ' (' + track.show + ')';
+            }
+            if (!!track.movie) {
+                filename += ' (' + track.movie + ')';
+            }
+            if (!!track.year) {
+                filename += ' (' + track.year + ')';
+                filename += ' (' + track.order + ')';
+            }
+            //console.log('filename:',filename);
+            $('#playlist_' + i).append($('<li>').append(
+                $('<a>')
+                    .prop('href', track.preview)
+                    .prop('download', filename)
+                    .html(filename)
+            ));
         }
-        console.log("Playlists data after : ", this.playlists);
-        // Fill menu with
     },
     _addToMenu: function(playlist, nr) {
         let $menu = $('#test-list');
@@ -227,31 +265,3 @@ let App = {
     },
     end: function() {}
 };
-
-DZ.init({
-    appId  : '321362',
-    channelUrl : 'http://blind.studio16.local/channel.php',
-    player : {
-        onload : function(playerStatus) {
-            console.log('Player loaded !');
-/*
-            //DZ.player.setMute(true);
-        }
-    }
-});
-*/
-DZ.login(function(response) {
-    if (response.authResponse) {
-        console.log('Welcome!  Fetching your information.... ');
-        DZ.api('/user/me', function(response) {
-            console.log('Good to see you, ' + response.name + '.');
-            App.init();
-        });
-    } else {
-        console.log('User cancelled login or did not fully authorize.');
-    }
-}, {perms: 'basic_access'});
-
-        }
-    }
-});
