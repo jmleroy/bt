@@ -9,6 +9,16 @@ let playlists = [
         'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
+                'author': 'Patrick Bruel',
+                'title': 'Place des grands hommes',
+                'answer': 74
+            },
+            {
+                'author': 'Olivia Ruiz',
+                'title': 'La femme chocolat',
+                'answer': 134
+            },
+            {
                 'author': 'Florent Pagny',
                 'title': 'Savoir aimer',
                 'answer': 27
@@ -19,19 +29,9 @@ let playlists = [
                 'answer': 158
             },
             {
-                'author': 'Olivia Ruiz',
-                'title': 'La femme chocolat',
-                'answer': 134
-            },
-            {
                 'author': 'Alain Souchon',
                 'title': 'Ultra Moderne Solitude',
                 'answer': 93
-            },
-            {
-                'author': 'Patrick Bruel',
-                'title': 'Place des grands hommes',
-                'answer': 74
             },
             {
                 'author': 'Clara Luciani',
@@ -74,6 +74,12 @@ let playlists = [
         'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
+                'author': 'Bernard Minet',
+                'title': 'Les chevaliers du zodiaque',
+                'start': 10,
+                'answer': 21
+            },
+            {
                 'author': 'Native',
                 'title': 'Pocahontas (L’air du vent)',
                 'answer': 86
@@ -93,12 +99,6 @@ let playlists = [
                 'author': 'Les Déménageurs',
                 'title': 'Bonjour tout va bien',
                 'start': 68
-            },
-            {
-                'author': 'Bernard Minet',
-                'title': 'Les chevaliers du zodiaque',
-                'start': 10,
-                'answer': 21
             },
             {
                 'author': 'Henri Dès',
@@ -160,7 +160,7 @@ let playlists = [
                 'answer': 100
             },
             {
-                'author': 'Elli & Jacno -  (r 21")',
+                'author': 'Elli & Jacno',
                 'title': 'Main dans la main',
                 'answer': 21
             },
@@ -232,19 +232,19 @@ let playlists = [
         'rules': "1 point par auteur, 1 point par titre, 1 point par série TV + 1 point de bonus si les 3 sont trouvés",
         'tracks': [
             {
+                'author': 'Barenaked Ladies',
+                'title': 'The Big Bang Theory',
+                'show': 'The Big Bang Theory',
+                'video': 'https://www.youtube.com/watch?v=EhoYKLIcTLM',
+                'answer': 13
+            },
+            {
                 'author': 'The Who',
                 'title': 'Baba O’Riley',
                 'show': 'Les Experts: Manhattan',
                 'video': 'https://www.youtube.com/watch?v=6klFTIVTBK4',
                 'start': 65,
                 'answer': 65
-            },
-            {
-                'author': 'Barenaked Ladies',
-                'title': 'The Big Bang Theory',
-                'show': 'The Big Bang Theory',
-                'video': 'https://www.youtube.com/watch?v=EhoYKLIcTLM',
-                'answer': 13
             },
             {
                 'author': 'Balthazar',
@@ -318,9 +318,9 @@ let playlists = [
         'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
-                'author': 'Mylène Farmer',
-                'title': 'Désenchantée',
-                'answer': 104
+                'author': 'Gala',
+                'title': 'Freed from Desire',
+                'answer': 118
             },
             {
                 'author': 'John Scatman',
@@ -329,15 +329,15 @@ let playlists = [
                 'answer': 28
             },
             {
+                'author': 'Mylène Farmer',
+                'title': 'Désenchantée',
+                'answer': 98
+            },
+            {
                 'author': 'Stéphan Eicher',
                 'title': 'Déjeuner en paix',
                 'start': 61,
                 'answer': 42
-            },
-            {
-                'author': 'Gala',
-                'title': 'Freed from Desire',
-                'answer': 118
             },
             {
                 'author': 'Manau',
@@ -383,7 +383,7 @@ let playlists = [
             {
                 'author': 'Amnesia',
                 'title': 'Ibiza',
-                'answer': 325
+                'answer': 313
             },
             {
                 'author': 'Take That',
