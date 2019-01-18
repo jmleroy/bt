@@ -45,7 +45,7 @@
             #test-panel .extra-year { font-size:8em; }
             #test-panel .nr-alone { font-size:5em; padding-bottom: 2em; }
             #test-panel .extra-order { display:block; }
-            #test-panel .rules { display:block; }
+            #test-panel .rules { display:block; font-size: 1.5em; }
 
             #cover {
                 width: 960px;
