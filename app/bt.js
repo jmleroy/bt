@@ -43,17 +43,22 @@ let App = {
     },
     _initLink: function(playlist) {
         let i = playlist.nr;
-
+/*
         $('#body').append(
             $('<h1>').html(playlist.codename)
         ).append(
             $('<ul id="playlist_' + i + '">')
         );
+*/
+let ret = '';
 
+ret += 'mkdir ' + playlist.codename + "\n";
+ret += 'cd ' + playlist.codename + "\n";
         console.log('add tracks ', playlist.tracks);
         for (let j in playlist.tracks) {
             let track = playlist.tracks[j],
-                filename = (Number.parseInt(track.nr) + 1) + ' - ' + track.author + ' - ' + track.title;
+                trackNr = Number.parseInt(track.nr) + 1
+                filename = (trackNr < 10 ? '0' : '') + trackNr + ' - ' + track.author + ' - ' + track.title;
             if (!!track.show) {
                 filename += ' (' + track.show + ')';
             }
@@ -65,13 +70,21 @@ let App = {
                 filename += ' (' + track.order + ')';
             }
             //console.log('filename:',filename);
+            /*
             $('#playlist_' + i).append($('<li>').append(
                 $('<a>')
                     .prop('href', track.preview)
                     .prop('download', filename)
                     .html(filename)
-            ));
+            ));*/
+            filename += '.mp3';
+            let previewName = track.preview.split('/').pop();
+            ret += "wget " + track.preview + "\n";
+
+            ret += "mv " + previewName + ' "' + filename + '"' + "\n";
         }
+        ret += 'cd .. ' + "\n";
+        $('#body').append($('<pre>').html(ret));
     },
     _addToMenu: function(playlist, nr) {
         let $menu = $('#test-list');
