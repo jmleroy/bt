@@ -183,6 +183,7 @@ let App = {
             seekPosition = App._getSeekPosition(start, track.duration);
         console.log('seek position ', start, ' with duration ', track.duration, ' = ', seekPosition);
 
+        App._fadeIn();
         App._showTrackInfo(track);
 
         DZ.player.seek(seekPosition);
@@ -192,6 +193,7 @@ let App = {
             if (!App.stop) {
                 DZ.player.next();
                 DZ.player.pause();
+                App._fadeOut();
                 if (trackNr + 1 === playlist.tracks.length) {
                     console.log('end of playlist reached:', trackNr + 1)
                 } else {
@@ -244,11 +246,6 @@ let App = {
         App._showCover(track);
     },
     _showCover: function(track) {
-        //if (App.showAnswers) {
-        //    $('#cover').html('').append($('<img>').prop('src', track.cover));
-        //} else {
-        //    $('#cover').html('').append($('<img>').prop('src', this.unknownCover));
-        //}
         $('#cover').css('background-image', 'url(' + (App.showAnswers ? track.cover : this.unknownCover) + ')');
     },
     _hideTrackInfo: function() {
@@ -263,6 +260,12 @@ let App = {
         $('#test-panel .extra-year').html('');
         $('#test-panel .extra-order').html('');
         $('#test-panel .rules').html('');
+    },
+    _fadeOut: function() {
+        $('#test-panel').fadeOut({duration: App.gap * 1000});
+    },
+    _fadeIn: function() {
+        $('#test-panel').fadeIn({duration: App.gap * 1000});
     },
     end: function() {}
 };
