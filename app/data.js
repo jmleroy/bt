@@ -474,17 +474,6 @@ let playlists = [
         'rules': "1 point par auteur, 1 point par titre",
         'tracks': [
             {
-                'author': 'Arctic Monkeys',
-                'title': 'I bet that you look good on the dancefloor',
-                'start': 74,
-                'answer': 93
-            },
-            {
-                'author': 'Gossip',
-                'title': 'Heavy Cross',
-                'answer': 35
-            },
-            {
                 'author': 'Franz Ferdinand',
                 'title': 'Take me out',
                 'answer': 90
@@ -495,8 +484,19 @@ let playlists = [
                 'answer': 134
             },
             {
+                'author': 'Arctic Monkeys',
+                'title': 'I bet that you look good on the dancefloor',
+                'start': 74,
+                'answer': 93
+            },
+            {
                 'author': 'Usher',
                 'title': 'Yeah!',
+            },
+            {
+                'author': 'Gossip',
+                'title': 'Heavy Cross',
+                'answer': 35
             },
             {
                 'author': 'Tragédie',
@@ -546,8 +546,7 @@ let playlists = [
             },
             {
                 'author': 'Avril Lavigne',
-                'title': 'Girlfriend',
-                'start': 37
+                'title': 'Girlfriend'
             }
         ]
     },
