@@ -116,9 +116,10 @@ let App = {
         DZ.player.playPlaylist(playlist.id); // load tracks
         DZ.player.setMute(true);
         DZ.player.setVolume(0);
+        DZ.player.pause();
 
         window.setTimeout(function() {
-            DZ.player.pause();
+
 
             $player.append(
                 $('<a class="btn btn-outline-secondary">')
@@ -162,17 +163,15 @@ let App = {
 
         App.stop = false;
         console.log('run playlist', playlist.id);//, ' with pause');
-        //DZ.player.playPlaylist(playlist.id); // load tracks
-        // Trick to allow first track's position to be changed :-p
-        DZ.player.playPlaylist(playlist.id); // load tracks
-        DZ.player.setMute(true);
         DZ.player.setVolume(0);
-        // TODO: show transition 3, 2, 1 ...
+        DZ.player.setMute(true);
+        DZ.player.playPlaylist(playlist.id, false, function() {
+            DZ.player.setVolume(100);
+            DZ.player.setMute(false);
+            App._playListTrack(0);
+        }); // load tracks
 
-        //DZ.player.setMute(false);
-        //DZ.player.setVolume(100);
         $('#test-panel .playlist-title').hide();
-        App._playListTrack(0);
     },
     _playListTrack: function(trackNr) {
         let playlist = App.currentPlaylist,
@@ -185,19 +184,18 @@ let App = {
         console.log('seek position ', start, ' with duration ', track.duration, ' = ', seekPosition);
 
         App._showTrackInfo(track);
+
         DZ.player.seek(seekPosition);
-        DZ.player.setMute(false);
-        DZ.player.setVolume(100);
         DZ.player.play();
 
         window.setTimeout(function() {
             if (!App.stop) {
+                DZ.player.next();
                 DZ.player.pause();
                 if (trackNr + 1 === playlist.tracks.length) {
                     console.log('end of playlist reached:', trackNr + 1)
                 } else {
-                    DZ.player.next();
-                    DZ.player.pause();
+
                     console.log('set player to next track, wait 1s');
                     window.setTimeout(function() {
                         console.log('run next track');
